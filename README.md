@@ -1,2 +1,2 @@
 # comp307finalrepo
-Hosting on Heroku, user login registration and authentication works
+ user login registration and authentication works
