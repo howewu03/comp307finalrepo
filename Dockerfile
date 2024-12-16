@@ -1,20 +1,20 @@
-# Use the official PHP Apache image as a base
+# Base image
 FROM php:8.2-apache
 
-# Set working directory
+# Set the working directory
 WORKDIR /var/www/html
 
-# Copy your project files into the container
-COPY . /var/www/html
+# Copy project files to the container
+COPY ./comp307-finalproject /var/www/html/
 
-# Install necessary extensions (optional, add as needed)
-RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+# Enable Apache mod_rewrite (if needed)
+RUN a2enmod rewrite
 
-# Set the Apache DocumentRoot to your project's public directory
-WORKDIR /var/www/html/comp307-finalproject/public/landing
+# Set permissions for Apache
+RUN chown -R www-data:www-data /var/www/html
 
-# Expose port 80 for the application
+# Expose port 80
 EXPOSE 80
 
-# Start Apache in the foreground
+# Start Apache
 CMD ["apache2-foreground"]
